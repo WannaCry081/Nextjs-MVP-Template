@@ -4,8 +4,6 @@
 
 Modern SaaS boilerplate that combines **Next.js 16**, **Clerk authentication**, and **Convex realtime data** so you can launch dashboards, billing flows, and synced user records with minimal setup.
 
-https://github.com/liraequedata/budgetbear
-
 ## Features
 
 - ✅ Pre-wired Clerk auth (UI + JWT templates) with Convex validation
