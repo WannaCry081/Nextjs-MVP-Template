@@ -10,6 +10,8 @@
     "convex:dev": "npx convex dev"
   },
   "dependencies": {
+    "@clerk/backend": "^2.23.2",
+    "@clerk/clerk-react": "^5.56.2",
     "@clerk/nextjs": "^6.35.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -18,6 +20,7 @@
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "svix": "^1.81.0",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {

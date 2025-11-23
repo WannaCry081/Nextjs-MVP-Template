@@ -3,7 +3,11 @@
 import { PropsWithChildren } from "react";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 
-const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
+  throw new Error("Missing NEXT_PUBLIC_CONVEX_URL in your .env file");
+}
+
+const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL);
 
 export function ConvexClientProvider({ children }: PropsWithChildren) {
   return <ConvexProvider client={convex}>{children}</ConvexProvider>;
