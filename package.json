@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "convex:dev": "npx convex dev"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.35.4",
