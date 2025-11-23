@@ -36,7 +36,7 @@ export default function Page() {
   const { theme } = useTheme();
   return (
     <>
-      <header className="px-6 py-8 fixed w-full backdrop-blur-sm">
+      <header className="px-6 py-8 fixed w-full backdrop-blur-sm z-10">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex gap-2">
             <AuthLoading>
