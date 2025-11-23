@@ -3,7 +3,7 @@
 import { PropsWithChildren } from "react";
 import { useTheme } from "next-themes";
 import { Settings2, Sparkles, Zap } from "lucide-react";
-import { Authenticated, Unauthenticated } from "convex/react";
+import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
 import {
   SignInButton,
   SignOutButton,
@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 import { ModeToggle } from "@/components/shared/mode-toggle";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const CardDecorator = ({ children }: PropsWithChildren) => (
   <div className="mask-radial-from-40% mask-radial-to-60% relative mx-auto size-36 duration-200 [--color-border:color-mix(in_oklab,var(--color-zinc-950)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-zinc-950)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-white)15%,transparent)] dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-white)20%,transparent)]">
@@ -35,9 +36,14 @@ export default function Page() {
   const { theme } = useTheme();
   return (
     <>
-      <header className="px-6 py-8 fixed w-full">
+      <header className="px-6 py-8 fixed w-full backdrop-blur-sm">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <div>
+          <div className="flex gap-2">
+            <AuthLoading>
+              <Skeleton className="size-8 rounded-full" />
+              <Skeleton className="w-32" />
+            </AuthLoading>
+
             <Authenticated>
               <UserButton
                 showName
@@ -57,6 +63,11 @@ export default function Page() {
           </div>
 
           <div className="flex gap-2">
+            <AuthLoading>
+              <Skeleton className="w-24" />
+              <Skeleton className="w-24" />
+            </AuthLoading>
+
             <Unauthenticated>
               <SignInButton mode="modal">
                 <Button variant="outline">Sign In</Button>
@@ -138,7 +149,11 @@ export default function Page() {
               </CardContent>
             </Card>
           </div>
-          <div className="pt-34 pb-10 flex items-center justify-center">
+          <div className="pt-34 pb-10 flex flex-col lg:flex-row items-center justify-center gap-6">
+            <AuthLoading>
+              <Skeleton className="w-1/2 h-58" />
+              <Skeleton className="w-1/2 h-58" />
+            </AuthLoading>
             <Protect
               condition={(has) => !has({ plan: "free_user" })}
               fallback={<PricingTable />}
