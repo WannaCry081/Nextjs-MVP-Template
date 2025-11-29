@@ -1,6 +1,6 @@
 # Convex + Clerk Next.js Starter
 
-![hero-page-view](./public/hero-page.png)
+![hero-page-view](./docs/images/hero-page.png)
 
 A modern SaaS boilerplate that combines **Next.js 16**, **Clerk authentication**, and **Convex real-time data**, enabling you to launch dashboards, billing flows, and synced user records with minimal setup.
 
