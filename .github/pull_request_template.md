@@ -23,13 +23,13 @@ Select the type of change your PR introduces:
 
 <!-- Include screenshots or screen recordings if they help illustrate the change. -->
 
-## ✔️ Steps to Replicate
+## ✔️ Testing Steps
 
-Use the steps below to reproduce the issue (if applicable):
+Use the steps below to test or verify the changes:
 
 - [ ] Step 1: Navigate to the affected page or feature
 - [ ] Step 2: Perform the relevant action
-- [ ] Step 3: Confirm whether the issue is reproduced or resolved
+- [ ] Step 3: Confirm the expected outcome
 
 ## 🔗 Related Issues
 
