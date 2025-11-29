@@ -2,7 +2,7 @@
 
 ![hero-page-view](./public/hero-page.png)
 
-Modern SaaS boilerplate that combines **Next.js 16**, **Clerk authentication**, and **Convex realtime data** so you can launch dashboards, billing flows, and synced user records with minimal setup.
+A modern SaaS boilerplate that combines **Next.js 16**, **Clerk authentication**, and **Convex real-time data**, enabling you to launch dashboards, billing flows, and synced user records with minimal setup.
 
 ## Features
 
@@ -22,51 +22,28 @@ See `docs/setup.md` for the full walk-through.
 - [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) components
 - [pnpm](https://pnpm.io/) for dependency management
 
-## Prerequisites
-
-- Node.js ≥ 18.18
-- `pnpm` 9 (project pins `pnpm@9.12.2`)
-- A Convex deployment (`npx convex dev` will prompt you to log in if needed)
-- A Clerk application with:
-  - Publishable + secret keys
-  - A JWT template named **convex**
-  - Svix webhook signing secret
-
-## Environment Variables
-
-Create `.env.local` for Next.js:
-
-```bash
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
-CLERK_SECRET_KEY=sk_test_...
-CLERK_JWT_ISSUER_DOMAIN=https://<your-app>.clerk.accounts.dev
-CLERK_WEBHOOK_SECRET=whsec_...
-NEXT_PUBLIC_CONVEX_URL=https://<deployment>.convex.cloud
-CONVEX_DEPLOYMENT=dev:<deployment-slug>
-```
-
-Convex runs outside of Next.js, so copy required secrets into the Convex environment as well:
-
-```bash
-npx convex env set CLERK_JWT_ISSUER_DOMAIN https://<your-app>.clerk.accounts.dev
-npx convex env set CLERK_WEBHOOK_SECRET whsec_...
-```
-
-> ✱ Whenever you rotate Clerk secrets, update both `.env.local` and the Convex env.
-
 ## Getting Started
+
+1. Install the necessary packages by executing the command below;
 
 ```bash
 pnpm install
+```
 
-# Terminal 1 – Convex functions, schema, and webhook endpoint
+2. After installing the dependencies, we need to configure clerk and convex by following this guide [here](https://docs.convex.dev/auth/clerk#nextjs) which will help you get started with handling Clerk and Convex, make sure to copy the environment variables and create a `.env.local` to store it locally
+
+3. Once the Convex and Clerk environment variables are saved in `.env.local`, we need to set up the webhook. Go to the [HTTP File](convex/http.ts) and copy the path (`/clerk-users-webhook`) then append it to your `NEXT_PUBLIC_CONVEX_URL`, and change `.cloud` to `.site`, resulting in something like this `https://..x.convex.site/clerk-users-webhook`. after obtaining that value, you can paste it into the Clerk webhook settings
+
+4. Make sure you have updated the Convex environment variables; they should include `CLERK_JWT_ISSUER_DOMAIN` `CLERK_WEBHOOK_SECRET` setup there
+
+5. After configuring both Clerk and Convex, you can run
+
+```bash
 pnpm convex:dev
-
-# Terminal 2 – Next.js web app
 pnpm dev
 ```
 
-Open http://localhost:3000 to view the public marketing page. Use the Clerk modal to sign in. Convex verifies the JWT, saves user details via the webhook, and you can begin querying the synced record for dashboards.
+Open http://localhost:3000 to view the public marketing page. Use the Clerk modal to sign in. Convex verifies the JWT, saves user details via the webhook, and enables you to begin querying the synced records for dashboards.
 
 ## Useful Scripts
 
@@ -77,27 +54,6 @@ Open http://localhost:3000 to view the public marketing page. Use the Clerk moda
 | `pnpm start`      | Run the built Next.js app.                      |
 | `pnpm lint`       | ESLint.                                         |
 | `pnpm convex:dev` | Start Convex dev server + hot reload functions. |
-
-## Key Files
-
-- `app/layout.tsx` – wraps the tree with Clerk + Convex providers.
-- `components/shared/convex-provider.tsx` – uses `ConvexProviderWithClerk`.
-- `convex/auth.config.ts` – registers Clerk as the Convex auth provider.
-- `convex/schema.ts` – defines the `users` table + index.
-- `convex/users.ts` – mutations to upsert/delete users from Clerk payloads.
-- `convex/http.ts` – Clerk webhook handler with Svix verification.
-- `docs/setup.md` – extended docs, diagrams, and next steps.
-
-## Project Structure
-
-```
-├── app/                    # Next.js routes (marketing + dashboard skeleton)
-├── components/             # Shared providers and UI primitives
-├── convex/                 # Convex schema, auth config, mutations, http
-├── docs/                   # Setup and reference docs
-├── lib/                    # Utilities (e.g., cn helper)
-└── public/                 # Static assets
-```
 
 ## Documentation
 
@@ -114,4 +70,4 @@ Open http://localhost:3000 to view the public marketing page. Use the Clerk moda
 4. Build dashboard routes under `app/(dashboard)/`.
 5. Add billing integrations (Stripe, Lemon Squeezy, etc.) – place hooks in Convex actions/mutations for a unified backend.
 
-Pull requests welcome! This template is meant to stay lean but pragmatic; if something slows down your setup, improve it and share.
+Pull requests are welcome! This template is meant to stay lean but pragmatic; If something slows down your setup, feel free to improve it and share.
