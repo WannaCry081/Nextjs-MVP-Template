@@ -1,6 +1,6 @@
 "use client";
 
-import { PropsWithChildren } from "react";
+import { useState, PropsWithChildren } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { ConvexReactClient } from "convex/react";
 import { ConvexQueryClient } from "@convex-dev/react-query";
@@ -14,18 +14,21 @@ if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL);
 
 export function ConvexClientProvider({ children }: PropsWithChildren) {
-  const convexQueryClient = new ConvexQueryClient(convex);
-
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        queryKeyHashFn: convexQueryClient.hashFn(),
-        queryFn: convexQueryClient.queryFn(),
+  const [queryClient] = useState(() => {
+    const convexQueryClient = new ConvexQueryClient(convex);
+    const tanstackQueryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          queryKeyHashFn: convexQueryClient.hashFn(),
+          queryFn: convexQueryClient.queryFn(),
+        },
       },
-    },
-  });
+    });
 
-  convexQueryClient.connect(queryClient);
+    convexQueryClient.connect(tanstackQueryClient);
+
+    return tanstackQueryClient;
+  });
 
   return (
     <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
