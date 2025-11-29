@@ -1,6 +1,6 @@
 # Convex + Clerk Next.js Starter
 
-![hero-page-view](./public/hero-page.png)
+![hero-page-view](./docs/images/hero-page.png)
 
 A modern SaaS boilerplate that combines **Next.js 16**, **Clerk authentication**, and **Convex real-time data**, enabling you to launch dashboards, billing flows, and synced user records with minimal setup.
 
@@ -24,19 +24,27 @@ See `docs/setup.md` for the full walk-through.
 
 ## Getting Started
 
-1. Install the necessary packages by executing the command below;
+1. Clone the repository template to your desired directory.
+
+2. After cloning the repository, open a terminal in your cloned repository, then run the setup script to create a new project by executing:
+
+```bash
+./setup.bash
+```
+
+3. Install the necessary packages by executing the command below;
 
 ```bash
 pnpm install
 ```
 
-2. After installing the dependencies, we need to configure clerk and convex by following this guide [here](https://docs.convex.dev/auth/clerk#nextjs) which will help you get started with handling Clerk and Convex, make sure to copy the environment variables and create a `.env.local` to store it locally
+4. After installing the dependencies, we need to configure clerk and convex by following this guide [here](https://docs.convex.dev/auth/clerk#nextjs) which will help you get started with handling Clerk and Convex, make sure to copy the environment variables and create a `.env.local` to store it locally
 
-3. Once the Convex and Clerk environment variables are saved in `.env.local`, we need to set up the webhook. Go to the [HTTP File](convex/http.ts) and copy the path (`/clerk-users-webhook`) then append it to your `NEXT_PUBLIC_CONVEX_URL`, and change `.cloud` to `.site`, resulting in something like this `https://..x.convex.site/clerk-users-webhook`. after obtaining that value, you can paste it into the Clerk webhook settings
+5. Once the Convex and Clerk environment variables are saved in `.env.local`, we need to set up the webhook. Go to the [HTTP File](convex/http.ts) and copy the path (`/clerk-users-webhook`) then append it to your `NEXT_PUBLIC_CONVEX_URL`, and change `.cloud` to `.site`, resulting in something like this `https://..x.convex.site/clerk-users-webhook`. after obtaining that value, you can paste it into the Clerk webhook settings
 
-4. Make sure you have updated the Convex environment variables; they should include `CLERK_JWT_ISSUER_DOMAIN` `CLERK_WEBHOOK_SECRET` setup there
+6. Make sure you have updated the Convex environment variables; they should include `CLERK_JWT_ISSUER_DOMAIN` `CLERK_WEBHOOK_SECRET` setup there
 
-5. After configuring both Clerk and Convex, you can run
+7. After configuring both Clerk and Convex, you can run
 
 ```bash
 pnpm convex:dev
