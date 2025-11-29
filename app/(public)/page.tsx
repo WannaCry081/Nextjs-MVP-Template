@@ -23,7 +23,7 @@ const CardDecorator = ({ children }: PropsWithChildren) => (
   <div className="mask-radial-from-40% mask-radial-to-60% relative mx-auto size-36 duration-200 [--color-border:color-mix(in_oklab,var(--color-zinc-950)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-zinc-950)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-white)15%,transparent)] dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-white)20%,transparent)]">
     <div
       aria-hidden
-      className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px] dark:opacity-50"
+      className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-size-[24px_24px] dark:opacity-50"
     />
 
     <div className="bg-background absolute inset-0 m-auto flex size-12 items-center justify-center border-l border-t">
@@ -36,13 +36,15 @@ export default function Page() {
   const { theme } = useTheme();
   return (
     <>
-      <header className="px-6 py-8 fixed w-full backdrop-blur-sm z-10">
+      <header className="px-6 py-8 fixed w-full backdrop-blur-sm">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex gap-2">
-            <AuthLoading>
-              <Skeleton className="size-8 rounded-full" />
-              <Skeleton className="w-32" />
-            </AuthLoading>
+            <Authenticated>
+              <AuthLoading>
+                <Skeleton className="size-8 rounded-full" />
+                <Skeleton className="w-32" />
+              </AuthLoading>
+            </Authenticated>
 
             <Authenticated>
               <UserButton
@@ -149,11 +151,7 @@ export default function Page() {
               </CardContent>
             </Card>
           </div>
-          <div className="pt-34 pb-10 flex flex-col lg:flex-row items-center justify-center gap-6">
-            <AuthLoading>
-              <Skeleton className="w-1/2 h-58" />
-              <Skeleton className="w-1/2 h-58" />
-            </AuthLoading>
+          <div className="pt-16 pb-4 flex flex-col lg:flex-row items-center justify-center gap-6">
             <Protect
               condition={(has) => !has({ plan: "free_user" })}
               fallback={<PricingTable />}
