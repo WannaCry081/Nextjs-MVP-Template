@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, PropsWithChildren } from "react";
+import { useEffect, useState, PropsWithChildren } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { ConvexReactClient } from "convex/react";
 import { ConvexQueryClient } from "@convex-dev/react-query";
@@ -29,6 +29,13 @@ export function ConvexClientProvider({ children }: PropsWithChildren) {
 
     return tanstackQueryClient;
   });
+
+  useEffect(() => {
+    return () => {
+      // Clean up query client on unmount
+      queryClient.clear();
+    };
+  }, [queryClient]);
 
   return (
     <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
