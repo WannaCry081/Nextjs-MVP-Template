@@ -2,18 +2,18 @@
 
 ## 📝 Description
 
-<!-- Provide a brief summary of the changes in 1–2 sentences. -->
+<!-- Provide a brief summary of the changes in 1-2 sentences. -->
 
 ## 🧪 Type of Change
 
 Select the type of change your PR introduces:
 
 - ✨ Feature:
-  <!-- A non‑breaking change that adds functionality. -->
+  <!-- A non-breaking change that adds functionality. -->
 - 🐛 Bug fix:
-  <!-- A non‑breaking change that fixes an issue. -->
+  <!-- A non-breaking change that fixes an issue. -->
 - 🔧 Refactor:
-  <!-- A non‑breaking change that improves code structure. -->
+  <!-- A non-breaking change that improves code structure. -->
 - 💥 Breaking change:
   <!-- A fix or feature that would cause existing functionality to not work as expected. -->
 - 📝 Documentation update:
@@ -23,9 +23,9 @@ Select the type of change your PR introduces:
 
 <!-- Include screenshots or screen recordings if they help illustrate the change. -->
 
-## ✔️ Steps to replicate
+## ✔️ Steps to Replicate
 
-Use the steps below to replicate the issue (if applicable):
+Use the steps below to reproduce the issue (if applicable):
 
 - [ ] Step 1: Navigate to the affected page or feature
 - [ ] Step 2: Perform the relevant action
