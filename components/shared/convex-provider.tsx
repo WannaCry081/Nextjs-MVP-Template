@@ -14,7 +14,7 @@ if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL);
 
 export function ConvexClientProvider({ children }: PropsWithChildren) {
-  const [queryClient] = useState(() => {
+  const [{ queryClient, convexQueryClient }] = useState(() => {
     const convexQueryClient = new ConvexQueryClient(convex);
     const tanstackQueryClient = new QueryClient({
       defaultOptions: {
@@ -27,15 +27,15 @@ export function ConvexClientProvider({ children }: PropsWithChildren) {
 
     convexQueryClient.connect(tanstackQueryClient);
 
-    return tanstackQueryClient;
+    return { queryClient: tanstackQueryClient, convexQueryClient };
   });
 
   useEffect(() => {
     return () => {
-      // Clean up query client on unmount
+      convexQueryClient.unsubscribe?.();
       queryClient.clear();
     };
-  }, [queryClient]);
+  }, [convexQueryClient, queryClient]);
 
   return (
     <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
