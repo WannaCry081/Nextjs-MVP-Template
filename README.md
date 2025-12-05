@@ -32,22 +32,29 @@ See `docs/setup.md` for the full walk-through.
 ./setup.bash
 ```
 
-3. Install the necessary packages by executing the command below;
+3. Install the necessary packages by executing the command below:
 
 ```bash
 pnpm install
 ```
 
-4. After installing the dependencies, we need to configure clerk and convex by following this guide [here](https://docs.convex.dev/auth/clerk#nextjs) which will help you get started with handling Clerk and Convex, make sure to copy the environment variables and create a `.env.local` to store it locally
-
-5. Once the Convex and Clerk environment variables are saved in `.env.local`, we need to set up the webhook. Go to the [HTTP File](convex/http.ts) and copy the path (`/clerk-users-webhook`) then append it to your `NEXT_PUBLIC_CONVEX_URL`, and change `.cloud` to `.site`, resulting in something like this `https://..x.convex.site/clerk-users-webhook`. after obtaining that value, you can paste it into the Clerk webhook settings
-
-6. Make sure you have updated the Convex environment variables; they should include `CLERK_JWT_ISSUER_DOMAIN` `CLERK_WEBHOOK_SECRET` setup there
-
-7. After configuring both Clerk and Convex, you can run
+4. After installing the dependencies, create an account and project in Convex, after which you can execute the command below and select your project:
 
 ```bash
 pnpm convex:dev
+or
+pnpm dlx convex dev
+```
+
+5. Then, we need to create an account in Clerk, which has simple steps to follow in their [documentation](https://clerk.com/docs/nextjs/getting-started/quickstart). Make sure to copy the environment variables mentioned in their documentation and paste them into the `.env.local` file created by Convex.
+
+6. Once the Convex and Clerk environment variables are saved in `.env.local`, we need to set up the webhook. Go to the [HTTP File](convex/http.ts) and copy the path (`/clerk-users-webhook`), then append it to your `NEXT_PUBLIC_CONVEX_URL`, and change `.cloud` to `.site`, resulting in something like this: `https://..x.convex.site/clerk-users-webhook`. After obtaining that value, you can paste it into the Clerk webhook settings.
+
+7. Make sure you have updated the Convex environment variables; they should include `CLERK_JWT_ISSUER_DOMAIN` and `CLERK_WEBHOOK_SECRET` set up there.
+
+8. After configuring both Clerk and Convex, you can execute:
+
+```bash
 pnpm dev
 ```
 
