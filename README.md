@@ -58,6 +58,12 @@ pnpm dlx convex dev
 pnpm dev
 ```
 
+Or launch everything at once—Convex dev server, Convex dashboard, and the app—with:
+
+```bash
+pnpm start:all
+```
+
 Open http://localhost:3000 to view the public marketing page. Use the Clerk modal to sign in. Convex verifies the JWT, saves user details via the webhook, and enables you to begin querying the synced records for dashboards.
 
 ## Useful Scripts
