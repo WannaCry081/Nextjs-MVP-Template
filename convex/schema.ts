@@ -10,10 +10,8 @@ export default defineSchema({
     email: v.string(),
     banned: v.boolean(),
     locked: v.boolean(),
-    lockoutExpiresInSeconds: v.number(),
     imageUrl: v.string(),
     createdAt: v.string(),
     updatedAt: v.string(),
-    externalId: v.string(),
-  }).index("byExternalId", ["externalId"]),
+  }).index("byId", ["id"]),
 });
