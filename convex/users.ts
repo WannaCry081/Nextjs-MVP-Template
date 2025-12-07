@@ -14,6 +14,7 @@ export const upsertFromClerk = internalMutation({
   async handler(ctx, { data }) {
     const userAttributes = {
       id: data.id,
+      clerkId: data.id,
       username: data.username ?? "",
       firstName: data.first_name ?? "",
       lastName: data.last_name ?? "",
@@ -66,6 +67,6 @@ export async function getCurrentUser(ctx: QueryCtx) {
 async function userByExternalId(ctx: QueryCtx, externalId: string) {
   return await ctx.db
     .query("users")
-    .withIndex("byId", (q) => q.eq("id", externalId))
+    .withIndex("byClerkId", (q) => q.eq("clerkId", externalId))
     .unique();
 }
