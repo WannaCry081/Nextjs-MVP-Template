@@ -1,19 +1,8 @@
-import { defineSchema, defineTable } from "convex/server";
-import { v } from "convex/values";
+import { defineSchema } from "convex/server";
+
+// Schemas
+import * as schema from "./schemas";
 
 export default defineSchema({
-  users: defineTable({
-    clerkId: v.string(),
-    username: v.string(),
-    firstName: v.string(),
-    lastName: v.string(),
-    email: v.string(),
-    banned: v.boolean(),
-    locked: v.boolean(),
-    imageUrl: v.string(),
-    createdAt: v.string(),
-    updatedAt: v.string(),
-  })
-    .index("byClerkId", ["clerkId"])
-    .index("byEmail", ["email"]),
+  ...schema.userSchema,
 });
