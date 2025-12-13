@@ -95,8 +95,7 @@ export default function Page() {
               Next.js MVP Template
             </h2>
             <p className="mt-4">
-              A starter project template for building MVPs with Next.js using
-              Convex and Clerk
+              A starter project template for building MVPs with Next.js using Convex and Clerk
             </p>
           </div>
           <div className="@min-4xl:max-w-full @min-4xl:grid-cols-3 mx-auto mt-8 grid max-w-sm gap-6 [--color-background:var(--color-muted)] [--color-card:var(--color-muted)] *:text-center md:mt-16 dark:[--color-muted:var(--color-zinc-900)]">
@@ -111,8 +110,8 @@ export default function Page() {
 
               <CardContent>
                 <p className="text-sm">
-                  Preconfigured with essential Convex and Clerk setup so you can
-                  start building immediately—no boilerplate required.
+                  Preconfigured with essential Convex and Clerk setup so you can start building
+                  immediately—no boilerplate required.
                 </p>
               </CardContent>
             </Card>
@@ -128,8 +127,8 @@ export default function Page() {
 
               <CardContent>
                 <p className="mt-3 text-sm">
-                  Built for flexibility—extend, modify, and integrate however
-                  you want while keeping full ownership of your codebase.
+                  Built for flexibility—extend, modify, and integrate however you want while keeping
+                  full ownership of your codebase.
                 </p>
               </CardContent>
             </Card>
@@ -145,17 +144,14 @@ export default function Page() {
 
               <CardContent>
                 <p className="mt-3 text-sm">
-                  Fully open source, giving you transparency and the freedom to
-                  adapt the template to any project needs.
+                  Fully open source, giving you transparency and the freedom to adapt the template
+                  to any project needs.
                 </p>
               </CardContent>
             </Card>
           </div>
           <div className="pt-16 pb-4 flex flex-col lg:flex-row items-center justify-center gap-6">
-            <Protect
-              condition={(has) => !has({ plan: "free_user" })}
-              fallback={<PricingTable />}
-            >
+            <Protect condition={(has) => !has({ plan: "free_user" })} fallback={<PricingTable />}>
               <span className="text-extrabold text-2xl">
                 Congratualation in purchasing the premium version! 🎉
               </span>
