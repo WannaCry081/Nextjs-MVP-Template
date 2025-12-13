@@ -1,10 +1,6 @@
 import { ConvexReactClient } from "convex/react";
 import { ConvexQueryClient } from "@convex-dev/react-query";
-import {
-  defaultShouldDehydrateQuery,
-  isServer,
-  QueryClient,
-} from "@tanstack/react-query";
+import { defaultShouldDehydrateQuery, isServer, QueryClient } from "@tanstack/react-query";
 
 export const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL);
 
@@ -27,8 +23,7 @@ export const makeConvexQueryClient = () => {
       dehydrate: {
         // include pending queries in dehydration
         shouldDehydrateQuery: (query) =>
-          defaultShouldDehydrateQuery(query) ||
-          query.state.status === "pending",
+          defaultShouldDehydrateQuery(query) || query.state.status === "pending",
       },
     },
   });
