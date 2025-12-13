@@ -1,8 +1,9 @@
 import { httpRouter } from "convex/server";
-import { httpAction } from "./_generated/server";
-import { internal } from "./_generated/api";
 import type { WebhookEvent } from "@clerk/backend";
 import { Webhook } from "svix";
+
+import { httpAction } from "./_generated/server";
+import { internal } from "./_generated/api";
 
 const http = httpRouter();
 
@@ -13,7 +14,7 @@ http.route({
     const event = await validateRequest(request);
     if (!event) {
       return new Response("Error occured", { status: 400 });
-  }
+    }
     switch (event.type) {
       case "user.created": // intentional fallthrough
       case "user.updated":
