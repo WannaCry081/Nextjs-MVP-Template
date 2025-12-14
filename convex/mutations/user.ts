@@ -2,7 +2,7 @@ import { UserJSON } from "@clerk/backend";
 import { v, Validator } from "convex/values";
 
 import { internalMutation } from "../_generated/server";
-import { userByExternalId } from "../queries/user.queries";
+import { userByExternalId } from "../queries/user";
 
 export const upsertFromClerk = internalMutation({
   args: { data: v.any() as Validator<UserJSON> },

@@ -1,4 +1,5 @@
-interface ApiResponse<T> {
+export interface ApiResponse<T> {
+  success?: boolean;
   data?: T | null;
   statusCode: ApiResponseStatusCode;
   message?: string;
@@ -16,11 +17,18 @@ export enum ApiResponseStatusCode {
 }
 
 export function apiResponse<T>(props: ApiResponse<T>) {
+  const SUCCESS_CODES = [
+    ApiResponseStatusCode.OK,
+    ApiResponseStatusCode.CREATED,
+    ApiResponseStatusCode.NO_CONTENT,
+  ];
+
+  const isInternalServerError = props.statusCode === ApiResponseStatusCode.INTERNAL_SERVER;
+  const isSuccess = SUCCESS_CODES.includes(props.statusCode);
+
   return {
     ...props,
-    message:
-      props.statusCode === ApiResponseStatusCode.INTERNAL_SERVER
-        ? "Internal Server Error"
-        : (props.message ?? ""),
+    success: isSuccess,
+    message: isInternalServerError ? "Internal Server Error" : (props.message ?? ""),
   };
 }
