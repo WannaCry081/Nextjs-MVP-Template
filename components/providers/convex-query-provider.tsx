@@ -7,7 +7,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Services
-import { convex, getConvexQueryClient } from "@/services/convex-query-client";
+import { convex, getConvexQueryClient } from "@/lib/get-convex-query-client";
 
 export const ConvexQueryClientProvider = ({ children }: PropsWithChildren) => {
   const queryClient = getConvexQueryClient();
