@@ -9,8 +9,10 @@ import {
   SignOutButton,
   SignUpButton,
   UserButton,
-  PricingTable,
-  Protect,
+
+  // INFO: Uncomment this if pricing is enabled in clerk
+  // PricingTable,
+  // Protect,
 } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
@@ -151,11 +153,12 @@ export default function Page() {
             </Card>
           </div>
           <div className="pt-16 pb-4 flex flex-col lg:flex-row items-center justify-center gap-6">
-            <Protect condition={(has) => !has({ plan: "free_user" })} fallback={<PricingTable />}>
+            {/* INFO: Uncomment this if pricing is enabled in clerk */}
+            {/* <Protect condition={(has) => !has({ plan: "free_user" })} fallback={<PricingTable />}>
               <span className="text-extrabold text-2xl">
                 Congratualation in purchasing the premium version! 🎉
               </span>
-            </Protect>
+            </Protect> */}
           </div>
         </div>
       </section>
